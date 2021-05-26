@@ -83,7 +83,7 @@ app.post('/artist', (req, res) => {
     console.log('req.body', req.body);
     
     let queryText = `INSERT INTO "artist" ("name", "birthdate")
-    VALUES ($1, $2,);`
+    VALUES ($1, $2);`
 
     let values = [req.body.name, req.body.birthdate];
 
@@ -92,7 +92,8 @@ app.post('/artist', (req, res) => {
         res.sendStatus(201);
     }) // end .then
     .catch( err => {
-        res.sendStatus(500);      
+        res.sendStatus(500);
+        console.log(err);     
     }) // end .catch
 }); // end app.post /artist
 
@@ -115,7 +116,7 @@ app.post('/song', (req, res) => {
     console.log('req.body', req.body);
 
     let queryText = `INSERT INTO "song" ("title", "length", "released")
-    VALUES ($1, $2, $3,);`
+    VALUES ($1, $2, $3);`
 
     let values = [req.body.title, req.body.length, req.body.released];
 
